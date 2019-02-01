@@ -1,0 +1,76 @@
+Task 3 - optimization.
+
+Your task is to find hot spots and propose optimizations so that the Dijkstra
+algorithm implemented for this project runs faster. Familiarize youself and
+experiment with the code - you freely modify the data structures in
+task1.modifyme package.
+
+The project implements a simple shortest path problem. Given:
+ * a bidirectional graph and 
+ * a list of points of interest as well as 
+ * an upper time limit
+it finds all the shortest paths between all the points of interest that are
+below the given time limit.
+
+Important:
+  The final version of the project MUST NOT modify anything outside of the
+  modifyme package and build.sbt! If you propose modifications make care to 
+  make it compilable without touching anything in the `task1` package
+
+For this task the priorities are
+  1) being correct
+  2) being fast
+  3) being readable or extensible
+
+(i.e being correct is more important than being fast, being fast is more
+important than being readable or extensible)
+
+Although one could probably spend a lot of time fine-tuning the data structures
+here, you should strive for big improvements first. It should be possible to
+substantially improve the runtime of the program in about 90 minutes of time. 
+
+It's totally fine to spend more time then the stated 1.5hr but it's unnecessary
+- follow up questions will be asked if we're in doubt.
+
+Theoretical limits
+  * The total possible limit will be <= 10800 (in [s] see Infinity.scala)
+  * The amount of points of interest <= 1M
+  * |V| and |E| of the graph         <= 10M
+
+You can assume:
+  * that neither of the above will be 0 
+  * the graph won't have negative edges
+  * the data input data is correct for in all relevant situations
+
+Running:
+  * Testing data is provided at 
+      https://drive.google.com/open?id=0B9rMR3RujiO4T1JrekxNRnBTVVU
+  * it should be unpacked and the content of the `task1-test-data` should be
+    placed in the project root directory. 
+  * Use `sbt run` for a test run.
+    * the default implementation is awfully slow and memory inefficient
+      it might be prudent to use these settings:
+      -Xmx12g -Xms512M -Xss512M -XX:+UseConcMarkSweepGC
+      and even then the run on test data might NOT FINISH under 16 minutes. 
+    * We provide several settings in the `Main.Settings` 
+      * For the first couple of runs you might want to set the variable
+        `Main.Settings.UseLessPois=true` until you find where the inefficiencies lie.
+        with that flag the application should run fine under 6Gbs of memory
+      * If you're on a machine with less than 12Gb of RAM you might want to set 
+        `Main.Settings.UseGraph = GraphType.ReadSmall` - the program should work
+         fine on 4Gb of RAM.
+      * to skip loading the graph completely use `Main.Settings.UseGraph = GraphType.Constant`) 
+        to profile issues unrelated to graph traversal
+
+Tips and hints:
+  * take a look at the implementation of Dijkstra and the calls it makes.
+  * the provided implementations in modifyme package don't perform really well -
+    the default data structures in the scala library won't be enough for
+    peak performance
+  * Evidence of `Infinity[Int]` is guaranteed to be equal to the time limit + 1. You can add
+    to the constructors of your data structures if you want to leverage that knowledge.
+  * it is totally fine to add any external dependencies for this project
+  * time time spent on loading and writing the data is not counted in this task
+  * `Dijkstra.apply` is called in parallel, but each call works on their own
+    copies of the data - only the graph is shared. You can use this to your advantage.
+  * think about data locality, boxing, garbage collection

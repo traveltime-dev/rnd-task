@@ -1,0 +1,38 @@
+Task 1 - review / safety
+
+Your task is:
+
+1) to go over the code in `review` package and propose modifications (either in
+code or unambiguous comments) as well as the MOTIVATION for the change.
+
+2) go over the scenarios in the `design` package and propose your
+implementations
+
+For this task the priorities are:
+  1) being correct
+  2) being readable and extensible
+
+Speed is NOT important in this task - assume that the code in package is a top
+level api, correctness NOT speed is paramount. 
+
+The code that is WRONG for this task is such that we think it can cause the following problems
+in the future:
+  * The class is inadequate
+  * The caller of the code can provide wrong arguments 
+  * The caller of the code can get problematic return values
+  * The maintainer may easily misunderstand the code
+  * The maintainer may easily extend the code in a way that will no longer guarantee the correctness of the code
+  * The maintainer may be easily misled about the typographical properties of the code
+  * The code is not defensive enough.
+
+Do not modify anything from the `donotmodify` package 
+  - assume they're calls to libraries we do not control and cannot gurantee good
+    behevaiour (think: native database implementations, external libraries we
+    cannot vouch for. You can treat the comments as documentation).
+  - the implementations are not provided - only the types and documentation
+
+Tips and hints:
+  * Each scenario is independent and presents the overall usage of the code in
+    *reading* order
+  * Each scenario has at least one glaring problem with it
+  * You can include any external dependency if you wish.

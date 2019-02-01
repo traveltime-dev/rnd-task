@@ -1,0 +1,48 @@
+Task 2 - research
+
+Download and skim through the paper:
+  * https://arxiv.org/pdf/1411.1209.pdf
+  * (mirror) https://drive.google.com/open?id=0B9rMR3RujiO4MzVFVlpNUjE0alk
+
+Your task is to implement the data structure described in that paper and provide
+a test suite that checks for the correctness of the methods (there's no need to
+test for statistical properties of dequeued entries or any performance tests).
+
+For this task the priorities are
+  1) being correct.
+  2) being readable.
+
+It is enough that the provided queue correctly implements the skeleton methods
+task2.MultiQueue (i.e you need not worry yourself with anything else that's
+described in the paper). 
+
+The queue MUST work in a multi-threaded scenario (e.g a parallel
+Dijkstra-algorithm implementation)
+
+implementation:
+  * because we assume it will be ran in a tight loop it's completely fine to
+    return null from the queue
+  * `isEmpty` should only return true if there's no element in the queue at all. 
+    The workers using the queue will check if `dequeue() == null` and busy loop
+    on that condition e.g:
+
+    class Worker(queue: MultiQueue) {
+      def run(): Unit = {
+        while(!queue.isEmpty) {
+          val work = queue.deleteMin()
+          if (work != null) doWork(work)
+        }
+      }
+    }
+  * the implementation of `size` can be "best effort" only and doesn't have to
+    be accurate
+
+Use the provided skeleton project. 
+
+Hints and tips:
+  * Try to skim the paper - getting into the nitty-gritty and understanding it
+    fully is not needed. 
+  * Use the provided `Queue` as the sequential queue implementation
+  * An empty scalatest class skeleton was provided.
+  * Hint use `java.util.concurrent.atomic.AtomicIntegerArray` and
+    `compareAndSet` for locking.
