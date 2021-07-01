@@ -1,0 +1,7 @@
+# SBT files
+target/
+
+#IntelliJ
+.idea
+
+.bsp

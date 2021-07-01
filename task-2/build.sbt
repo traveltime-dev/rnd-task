@@ -4,7 +4,7 @@ name := "research"
 
 version := "1.0.0"
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.8"
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -28,9 +28,5 @@ scalacOptions in (Test, console) := (scalacOptions in (Compile, console)).value
 
 mainClass in (Compile, run) := Some("task2.Main")
 
-resolvers ++= List(
-  "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases")
-
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.1" % "test")
-

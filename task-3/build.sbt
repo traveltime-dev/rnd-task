@@ -4,7 +4,7 @@ name := "optimize"
 
 version := "1.0.0"
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.8"
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -27,9 +27,6 @@ scalacOptions in (Compile, console) ~= (_ filterNot (_ == "-Ywarn-unused-import"
 scalacOptions in (Test, console) := (scalacOptions in (Compile, console)).value
 
 mainClass in (Compile, run) := Some("task1.Main")
-
-resolvers ++= List(
-  "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases")
 
 libraryDependencies ++= Seq(
   "org.scalaz" %% "scalaz-core"   % "7.2.15",

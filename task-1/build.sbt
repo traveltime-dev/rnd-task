@@ -1,10 +1,10 @@
-organization := "com.igeolise"
+organization := "com.traveltime"
 
 name := "review"
 
 version := "0.1.0-SNAPSHOT"
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.8"
 
 scalacOptions ++= Seq(
   "-deprecation",
