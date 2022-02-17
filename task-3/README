@@ -44,7 +44,7 @@ You can assume:
 
 Running:
   * Testing data is provided at 
-      https://drive.google.com/open?id=0B9rMR3RujiO4T1JrekxNRnBTVVU
+      https://drive.google.com/file/d/0B9rMR3RujiO4T1JrekxNRnBTVVU/view?usp=sharing&resourcekey=0-wrdbZi37IlyFoSp_LviImQ
   * it should be unpacked and the content of the `task1-test-data` should be
     placed in the project root directory. 
   * Use `sbt run` for a test run.
